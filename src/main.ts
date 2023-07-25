@@ -17,7 +17,10 @@ console.log(albumID)
 
 let array:[string,number,Boolean]=['string',1,true]
 
-array[0]=1 // as array first char 0 is string typescript emits error as it is assigned as numebr
+array[0]='seif' // as array first char 0 is string typescript emits error as it is assigned as numebr
+
+
+
 
 
 
