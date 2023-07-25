@@ -1,1 +1,1 @@
-let a='variable';
+let a='variable check';
