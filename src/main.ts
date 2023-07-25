@@ -1,8 +1,9 @@
-let username='seif';
-window.alert('hello'+username);
+let myName: string = 'Seif'
+let age:Number
+let date:Date
+let active:Boolean
+let albumID:any
 
 
-let a = 'a'
-let b = 70
-let c = '7'
-document.getElementsByTagName('body')[0].innerText =(b/c)
+age=43
+
