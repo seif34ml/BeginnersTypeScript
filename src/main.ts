@@ -1,126 +1,90 @@
+//INDEX SIGNATURE
 
+interface transObj {
+    pizza:number,
+    devices:String,
+    billType:'no'|'subscription'
+}
+  // here we assigned types of object type 
 
-//CLASSES
+const firstTransaction:transObj={
+    pizza:5,
+    devices:'mac',
+    billType:'no'
+}
+// key values must match what is setted 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-class Coder {
-   // NO NEED TO DECLARE HERE OUR VARIABLE OR VISIBLE MEMBER HERE 
-    constructor(
-        private name:String, // THIS IS A VARIABLE THAT IS ONLY ACCESSED THROUGH THE INSTANCE OF THECLASS
-       
-        protected readonly lang:String, 
-        /**  THIS IS A VARIABLE THAT IS ONLY
-         ACCESSED THROUGH THE INSTANCE OF THE CLASS AND THE CHILD CLASSES */
-
-        public age:Number //ACCESED EVERYWHERE
-    )
-    {
-        this.name=name;
-        this.lang=lang;
-        this.age=age;
-    }
-
-
-    public getLang(){
-         console.log('the lang is' ,this.lang);
-    }
-    public setLang(lang:String){
-        // this.lang=lang;  
-        /**  we will find that there is error here as readonly  
-         * type WHICH WE CAN USE AS AN UNCHANFED VARIABLE */
-    }
-
-
-
-
+interface transObjFirst {
+    [key:string]:string|number|any
 }
 
 
-const seif=new Coder('seif','typescript',30)
-
-seif.getLang();
-// seif.setLang('PHP');
-// seif.getLang();
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//inheritance
-class WebDev extends Coder{
-
-    constructor(
-       name:String, 
-      lang:String, 
-       age:Number,
-        public device:String 
-    ){
-    super(name,lang,age) // we use super as the father constructor of parent classes
-      this.device=device // assif=gn argument device to device member
-    }
-
-    public getDevice(){
-        this.typeDevice()
-    }
-
-    private typeDevice(){
-        console.log('device is',this.device);
-    }
+//we can set the key to key with type string and value of any type 
+const secondTransaction:transObjFirst={
+    A:5,
+    devices:'mac',
+    billType:'no',
+    c:true,
 }
 
-const seifdev=new WebDev ('seif','javascript',30,'dell')
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-seifdev.getLang();
-console.log(seifdev.age);
-
-//console.log(seifdev.lang);//  as it is a private variable it is impossible to access directly
-//seifdev.typeDevice();// this is also private cannot be accessed directly
-
-seifdev.getDevice()
-//this function contain the type device private function but her the function is accessible as we accessed it from a public function inside class 
+//keys of assertions
+interface Obj{
+    [key:string]:string|number|any
+} 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- 
+const Student:Obj={
+     name:'dave',
+     age:12
+}
 
-//interface
 
-interface Sound{
+for (const key in Student){
+    console.log(`${key} : ${Student[key as keyof Obj]}`); // USE KEYOF 'INTERFACE TO ACCESS THE VARIABLE INSIDE DATA'
+}
 
-    name:String,
-    sound:String,
-    playSound():String
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+type  keys= 'key1'|'key2'|'key3'; // we can here define our key props 
+
+type obj= Record<keys,string> // in the object type we use record <key type, types>
+
+
+// const obj1:obj={
+//    // key:'l',        // this will give us an error as type obj is assigned to 
+//                     //have a specific key props wqhich 'key '
+//     key2:'ll',
+//     key3:'lll'
+// }
+
+
+const obj1:obj={
+    key1:'l',
+    key2:'ll',
+    key3:'lll'
+}
+
+
+for(let object in obj1){
+    console.log(`{key}:${object} of value : ${obj1[object as keyof obj]} object` );
 }
 
 
 
-class Dog implements Sound{
-    name:string
-    sound:string
-    constructor( name:string,
-        sound:string){
-         this.name=name
-         this.sound=sound
-    }
-
-    playSound(): String {
-        return `hello i am dog ,my name is ${this.name} and my sound is ${this.sound}`
-    }
-}
-
-class Cat implements Sound{
-    name:string
-    sound:string
-    constructor( name:string,
-        sound:string){
-         this.name=name
-         this.sound=sound
-    }
-
-    playSound(): String {
-        return `hello i am cat ,my name is ${this.name} and my sound is ${this.sound}`
-    }
-}
-const mylo=new Dog('MYLO','WOOF WOOF')
-const jef=new Cat('jeff','meow meow')
 
 
 
-console.log(mylo.playSound(),jef.playSound());
+
+
+
+
+
+
+
+
+
+
