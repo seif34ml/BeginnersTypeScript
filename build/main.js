@@ -1,30 +1,34 @@
 "use strict";
-//INDEX SIGNATURE
-// here we assigned types of object type 
-const firstTransaction = {
-    pizza: 5,
-    devices: 'mac',
-    billType: 'no'
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Generics in identity function
+const echo = (arg) => {
+    return !!arg;
 };
-//we can set the key to key with type string and value of any type 
-const secondTransaction = {
-    A: 5,
-    devices: 'mac',
-    billType: 'no',
-    c: true,
+console.log(echo('ss'));
+// now we have an interface of object with two props one is Generic and other is boolean 
+// const isTrue=<T>(arg:T): Obj<T>=>{
+//     return {arg,is:'KK'}
+// }
+// as the above function will cause error 
+// as its type is set to string although it is boolean
+const isTrue = (arg) => {
+    return { arg, is: !!arg };
 };
-const Student = {
-    name: 'dave',
-    age: 12
-};
-for (const key in Student) {
-    console.log(`${key} : ${Student[key]}`); // USE KEYOF 'INTERFACE TO ACCESS THE VARIABLE INSIDE DATA'
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Generic class
+class States {
+    constructor(data) {
+        this.data = data;
+    }
+    set state(state) {
+        this.data = state;
+    }
+    get state() {
+        return this.data;
+    }
 }
-const obj1 = {
-    key1: 'l',
-    key2: 'll',
-    key3: 'lll'
-};
-for (let object in obj1) {
-    console.log(`{key}:${object} of value : ${obj1[object]} object`);
-}
+const state = new States('state');
+//state.state=57; here we will have error as although data prop is assigned to T type but it is initialized 
+// as string so we can not change its type at initialization
+state.state = 'seif';
+console.log(state.state);

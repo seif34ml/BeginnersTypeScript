@@ -1,90 +1,56 @@
-//INDEX SIGNATURE
 
-interface transObj {
-    pizza:number,
-    devices:String,
-    billType:'no'|'subscription'
-}
-  // here we assigned types of object type 
-
-const firstTransaction:transObj={
-    pizza:5,
-    devices:'mac',
-    billType:'no'
-}
-// key values must match what is setted 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-interface transObjFirst {
-    [key:string]:string|number|any
-}
-
-
-//we can set the key to key with type string and value of any type 
-const secondTransaction:transObjFirst={
-    A:5,
-    devices:'mac',
-    billType:'no',
-    c:true,
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//keys of assertions
-interface Obj{
-    [key:string]:string|number|any
-} 
-
-
-const Student:Obj={
-     name:'dave',
-     age:12
+//Generics in identity function
+const echo=<T>(arg:T):boolean=>{
+    return !!arg
 }
 
+console.log( echo('ss'));
 
-for (const key in Student){
-    console.log(`${key} : ${Student[key as keyof Obj]}`); // USE KEYOF 'INTERFACE TO ACCESS THE VARIABLE INSIDE DATA'
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Genirics using interface
+
+interface Obj <T>{
+   arg:T,
+   is:boolean
 }
+// now we have an interface of object with two props one is Generic and other is boolean 
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-type  keys= 'key1'|'key2'|'key3'; // we can here define our key props 
-
-type obj= Record<keys,string> // in the object type we use record <key type, types>
-
-
-// const obj1:obj={
-//    // key:'l',        // this will give us an error as type obj is assigned to 
-//                     //have a specific key props wqhich 'key '
-//     key2:'ll',
-//     key3:'lll'
+// const isTrue=<T>(arg:T): Obj<T>=>{
+//     return {arg,is:'KK'}
 // }
+// as the above function will cause error 
+// as its type is set to string although it is boolean
 
-
-const obj1:obj={
-    key1:'l',
-    key2:'ll',
-    key3:'lll'
+const isTrue=<T>(arg:T): Obj<T>=>{
+    return {arg,is:!!arg}
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Generic class
+class States <T>{
+    private data : T
 
-for(let object in obj1){
-    console.log(`{key}:${object} of value : ${obj1[object as keyof obj]} object` );
+    constructor(data:T){
+        this.data=data;
+    }
+
+    set state(state:T){
+        this.data=state
+    }
+
+    get state(){
+       return this.data
+    }
+
 }
 
+const state=new States('state');
+//state.state=57; here we will have error as although data prop is assigned to T type but it is initialized 
+// as string so we can not change its type at initialization
 
-
-
-
-
-
-
-
-
-
-
-
-
+state.state='seif'
+console.log(state.state);
 
 
