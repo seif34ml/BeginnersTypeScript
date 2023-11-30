@@ -10,7 +10,7 @@ interface List {
 }
 export default class FullList implements List {
 
-    list: ListItem[];
+    list: ListItem[]=[];
      
         constructor(private _list: ListItem[]) {
             this.list = _list; // Corrected property assignment
@@ -37,11 +37,14 @@ export default class FullList implements List {
     }
     addItem(itemObj: ListItem): void {
         this._list.push(itemObj);
+        console.log(this._list);
         this.save()
     }
     
         removeItem(id: string): void {
+            console.log(this._list);
             this._list = this._list.filter(item => item.id !== id)
+            console.log(this._list);
             this.save()
         
     }
