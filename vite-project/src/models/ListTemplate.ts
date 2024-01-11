@@ -20,7 +20,7 @@ export default class ListTemplate implements DOMList {
     }
 
     render(fullList: FullList): void {
-        window.alert('re')
+      
         this.clear()
         
         fullList.list.forEach(item => {
